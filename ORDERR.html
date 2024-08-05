@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <style>
+        h2 {
+            color: #8b4513;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 30px;
+            text-align: center;
+        }
+        table, td {
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .receipt {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #8b4513;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #f9f9f9;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .receipt h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .receipt p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .total {
+            border-top: 2px solid #8b4513;
+            padding-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h2>Order</h2>
+    <hr color="#8b4513">
+    <form id="orderForm">
+        <table>
+            <tr>
+                <td>Full Name</td>
+                <td colspan="6"><input type="text" name="full_name" size="30" placeholder="Input Your Name"></td>
+            </tr>
+            <tr>
+                <td>No Hp</td>
+                <td colspan="6"><input type="text" name="no_hp" size="30" placeholder="Input Your Phone Number"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td colspan="6"><input type="email" name="email" size="30" placeholder="example@gmail.com"></td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td colspan="6"><textarea name="address" cols="40" rows="5"></textarea></td>
+            </tr>
+            <tr>
+                <td>Donut Section</td>
+                <td>
+                    <select size="1" name="varian_donuts">
+                        <option value="Original Glazed Flavour">Original Glazed Flavour - Rp 12.000</option>
+                        <option value="Strawberry Flavour">Strawberry Flavour - Rp 15.000</option>
+                        <option value="Sugar Raised Flavour">Sugar Raised Flavour - Rp 18.000</option>
+                        <option value="Gummy Drops Flavour">Gummy Drops Flavour - Rp 25.000</option>
+                        <option value="Color Candy Flavour">Color Candy Flavour - Rp 23.000</option>
+                        <option value="Bavarian Filled Flavour">Bavarian Filled Flavour - Rp 20.000</option>
+                        <option value="None">None</option>
+                    </select>
+                </td>
+                <td>Drink Section</td>
+                <td>
+                    <select size="1" name="varian_drinks">
+                        <option value="Americano">Americano - Rp 20.000</option>
+                        <option value="Caffe Latte">Caffe Latte - Rp 23.000</option>
+                        <option value="Cappucino">Cappucino - Rp 23.000</option>
+                        <option value="Matcha">Matcha - Rp 30.000</option>
+                        <option value="Chocolate">Chocolate - Rp 30.000</option>
+                        <option value="Mineral Water">Mineral Water - Rp 8.000</option>
+                        <option value="None">None</option>
+                    </select>
+                </td>
+                <td>Ice Cream Section</td>
+                <td>
+                    <select size="1" name="varian_ice_cream">
+                        <option value="Vanilla Flavour">Vanilla Flavour - Rp 15.000</option>
+                        <option value="Chocolate Flavour">Chocolate Flavour - Rp 15.000</option>
+                        <option value="Berry Nut With Honey Yogurt Flavour">Berry Nut With Honey Yogurt Flavour - Rp 20.000</option>
+                        <option value="Cookies & Cream Flavour">Cookies & Cream Flavour - Rp 20.000</option>
+                        <option value="Mint Chocolate Flavour">Mint Chocolate Flavour - Rp 20.000</option>
+                        <option value="Sweat Honey Flavour">Sweat Honey Flavour - Rp 20.000</option>
+                        <option value="None">None</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Qty</td>
+                <td><input type="number" name="qty_donuts" size="10" placeholder="Qty"></td>
+                <td>Qty</td>
+                <td><input type="number" name="qty_drinks" size="10" placeholder="Qty"></td>
+                <td>Qty</td>
+                <td><input type="number" name="qty_ice_cream" size="10" placeholder="Qty"></td>
+            </tr>
+            <tr>
+                <td rowspan="6" valign="top">Payment</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="payment" value="BNI">BNI</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="payment" value="BCA">BCA</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="payment" value="GOPAY">GOPAY</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="payment" value="DANA">DANA</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="payment" value="OVO">OVO</td>
+            </tr>
+            <tr>
+                <td rowspan="3" valign="top">Choose</td>
+                <td colspan="6"><input type="checkbox" name="choose" value="dine_in">Dine In</td>
+            </tr>
+            <tr>
+                <td colspan="6"><input type="checkbox" name="choose" value="take_away">Take Away</td>
+            </tr>
+        </table>
+        <hr color="#8b4513">
+        <input type="button" value="Process" onclick="processOrder()">
+    </form>
+    <div class="receipt" id="receipt">
+        <h2>Bill</h2>
+        <p id="receiptName"></p>
+        <p id="receiptPhone"></p>
+        <p id="receiptEmail"></p>
+        <p id="receiptAddress"></p>
+        <div id="receiptItems"></div>
+        <p id="receiptTotal" class="total"></p>
+        <p id="receiptPayment"></p>
+        <p id="receiptChoose"></p>
+    </div>
+    <script>
+        function getPrice(item) {
+            const prices = {
+                "Original Glazed Flavour": 12000,
+                "Strawberry Flavour": 15000,
+                "Sugar Raised Flavour": 18000,
+                "Gummy Drops Flavour": 25000,
+                "Color Candy Flavour": 23000,
+                "Bavarian Filled Flavour": 20000,
+                "Americano": 20000,
+                "Caffe Latte": 23000,
+                "Cappucino": 23000,
+                "Matcha": 30000,
+                "Chocolate": 30000,
+                "Mineral Water": 8000,
+                "Vanilla Flavour": 15000,
+                "Chocolate Flavour": 15000,
+                "Berry Nut With Honey Yogurt Flavour": 20000,
+                "Cookies & Cream Flavour": 20000,
+                "Mint Chocolate Flavour": 20000,
+                "Sweat Honey Flavour": 20000
+            };
+            return prices[item] || 0;
+        }
+
+        function processOrder() {
+            const form = document.forms['orderForm'];
+            const name = form['full_name'].value;
+            const phone = form['no_hp'].value;
+            const email = form['email'].value;
+            const address = form['address'].value;
+
+            const donut = form['varian_donuts'].value.split(" - ")[0];
+            const donutQty = parseInt(form['qty_donuts'].value) || 0;
+            const drink = form['varian_drinks'].value.split(" - ")[0];
+            const drinkQty = parseInt(form['qty_drinks'].value) || 0;
+            const iceCream = form['varian_ice_cream'].value.split(" - ")[0];
+            const iceCreamQty = parseInt(form['qty_ice_cream'].value) || 0;
+
+            const payments = Array.from(form['payment']).filter(el => el.checked).map(el => el.value).join(', ');
+            const choose = Array.from(form['choose']).filter(el => el.checked).map(el => el.value.charAt(0).toUpperCase() + el.value.slice(1)).join(', ');
+
+            const donutTotal = donutQty * getPrice(donut);
+            const drinkTotal = drinkQty * getPrice(drink);
+            const iceCreamTotal = iceCreamQty * getPrice(iceCream);
+            const totalAmount = donutTotal + drinkTotal + iceCreamTotal;
+
+            document.getElementById('receiptName').textContent = `Name: ${name}`;
+            document.getElementById('receiptPhone').textContent = `Phone: ${phone}`;
+            document.getElementById('receiptEmail').textContent = `Email: ${email}`;
+            document.getElementById('receiptAddress').textContent = `Address: ${address}`;
+            
+            let itemsHTML = '';
+            if (donutQty > 0) {
+                itemsHTML += `<div class="item"><span>Donut (${donut})</span><span>Rp ${donutTotal.toLocaleString()}</span></div>`;
+            }
+            if (drinkQty > 0) {
+                itemsHTML += `<div class="item"><span>Drink (${drink})</span><span>Rp ${drinkTotal.toLocaleString()}</span></div>`;
+            }
+            if (iceCreamQty > 0) {
+                itemsHTML += `<div class="item"><span>Ice Cream (${iceCream})</span><span>Rp ${iceCreamTotal.toLocaleString()}</span></div>`;
+            }
+
+            document.getElementById('receiptItems').innerHTML = itemsHTML;
+            document.getElementById('receiptTotal').textContent = `Total: Rp ${totalAmount.toLocaleString()}`;
+            document.getElementById('receiptPayment').textContent = `Payment: ${payments}`;
+            document.getElementById('receiptChoose').textContent = `Choose: ${choose}`;
+
+            document.getElementById('receipt').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
